@@ -6,17 +6,18 @@ public class RegisterCourse implements Service{
     Section Section;
 
     @Override
-    public void Operation(Student student, Section section, Course course) {
+    public String Operation(Student student, Section section, Course course) {
         if (student.getMajor().equalsIgnoreCase(course.getMajor())) {
             if (student.getTerm()==course.getTerm()) {
-                student.registerCourse(section.getCourse(), section);
+                return student.registerCourse(section.getCourse(), section);
             }
+            else return "Failed";
         } else
-            System.out.println("Failed");
+            return "Failed";
     }
 
     @Override
-    public void Operation() {
-        
+    public String Operation() {
+        return null;
     }
 }

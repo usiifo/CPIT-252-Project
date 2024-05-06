@@ -16,6 +16,7 @@ import java.util.Scanner;
  */
 public class Controller {
     Student LoggedStudent;
+    Model Model;
     public void Start(){
         //this method represent the connection with the model, and everything else.
         
@@ -49,7 +50,7 @@ public class Controller {
         
         //when ever we reach this line , this means that the student has authinticated correctly , and we know 
         //which student object he is.
-        
+        Model = new Model(LoggedStudent);
         //now we must start the  View loop of the student.
         
         StudentView view = new StudentView();
@@ -61,44 +62,33 @@ public class Controller {
     public void BrowseCourses(){
         // in this method , the controller has to communicate with the model
         //in order to show the student all the courses in the same major.
+
         
-        //this requires us to create a service proxy , and a real service and whatnot 
+        String Result = Model.BrowseCourses();
         
-        //do some logging such as recording something , before calling the true service.
-        
-        Service proxy = new serviceProxy(LoggedStudent,new BrowseCourses());
-        proxy.Operation();
-        
+        System.out.println(Result);
         
     }
     
     public void registerCourse(String CourseCode,String SectionName){
         //here we will register the student to a certain course
         //given its Codename, and the section within the course.
-        Course course = Course.findCourse(CourseCode);
-        Section section = null;
-        if (course != null) {
-            section = Section.findSection(course, SectionName);
-        }
-        Service proxy = new serviceProxy(LoggedStudent, section, course, new RegisterCourse());
-        proxy.Operation();
-        
-        
+        String Result = Model.registerCourse(CourseCode, SectionName);
+       
+        System.out.println(Result);
     }
     
     public void ViewRegisteredCourses(){
         
-        Service proxy = new serviceProxy(LoggedStudent,new ViewRegisteredCourses());
-        proxy.Operation();
+        String Result = Model.ViewRegisteredCourses();
         
+        System.out.println(Result);
     }
     
     public void deleteRegisteredCourse(String CourseCode){
-            Course course = Course.findCourse(CourseCode);
-            Service proxy = new serviceProxy(LoggedStudent, course, new DeleteCourse());
-            proxy.Operation();
-
         
+        String Result = Model.deleteRegisteredCourse(CourseCode);
+        System.out.println(Result);
         
     }
 }

@@ -70,15 +70,16 @@ public class serviceProxy implements Service {
     
 
     @Override
-    public void Operation(Student student, Section section, Course course) {
-       RealService.Operation(student, section, course);
+    public String Operation(Student student, Section section, Course course) {
+       return RealService.Operation(student, section, course);
        //this method will call the operation that the real service provides. e.g: registering a course
         
     }
     
-    public void Operation(){
-        Operation(student, section, course);
+    public String Operation(){
+        return Operation(student, section, course);
         //this is the method we will use to call any operation of any service
+        
     }
 }
 

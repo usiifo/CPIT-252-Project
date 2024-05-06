@@ -16,16 +16,20 @@ import java.util.ArrayList;
 public class ViewRegisteredCourses implements Service{
 
     @Override
-    public void Operation() {
+    public String Operation() {
+        return null;
         
     }
 
     @Override
-    public void Operation(Student student, Section section, Course course) {
+    public String Operation(Student student, Section section, Course course) {
         ArrayList<Course> registeredCourses = (ArrayList<Course>) student.getRegisteredCourses();
+        String Result = "";
         for (Course rs : registeredCourses) {
-            System.out.println(rs.getName());
+            Result += "Course name: " + rs.getName() +", " + rs.getCode();
+            Result += "\n";
         }
+        return Result;
     }
     
 }

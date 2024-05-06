@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class DeleteCourse implements Service {
 
     @Override
-    public void Operation() {
+    public String Operation() {
+        return null;
 
     }
 
     @Override
-    public void Operation(Student student, Section section, Course course) {
-        student.deleteCourse(course);
-        System.out.println("Deleted Successful.");
+    public String Operation(Student student, Section section, Course course) {
+        return student.deleteCourse(course);
     }
 }

@@ -29,10 +29,12 @@ public class Course implements courseBuilder {
         return Term;
     }
 
-    public void getSections() {
+    public String getSections() {
+        String Result = "";
         for(Section section : sections){
-            System.out.println("Section: "+ section.getName());
+            Result += section.getName() + "\n";
         }
+        return Result;
     }
 
     @Override

@@ -28,16 +28,16 @@ public class Student implements studentBuilder {
         this.RegisteredCourses = new ArrayList<>();
     }
 
-    public void deleteCourse(Course course) {
+    public String deleteCourse(Course course) {
         RegisteredCourses.remove(course);
-        System.out.println("Delete successful for " + course.getName());
+        return "Delete successful for " + course.getName();
     }
-    public void registerCourse(Course course, Section section) {
+    public String registerCourse(Course course, Section section) {
         if (section.addStudent(this)) {  // Assuming addStudent method returns boolean
             RegisteredCourses.add(course);
-            System.out.println("Registration successful for " + course.getName());
+            return "Registration successful for " + course.getName();
         } else {
-            System.out.println("Registration failed - Section is full");
+            return "Registration failed - Section is full";
         }
     }
 

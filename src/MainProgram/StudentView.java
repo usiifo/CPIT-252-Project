@@ -24,15 +24,14 @@ public class StudentView {
         
         //and so the main menu should be here.
         Scanner input = new Scanner(System.in);
-        System.out.println("Welcome "+ LoggedStudent.getName() + "to our System");
+        System.out.println("Welcome "+ LoggedStudent.getName() + " to our System");
         System.out.println("=================================================");
         while (true){
             System.out.println("Choose the service you want");
             System.out.println("1- Browse Courses");
-            System.out.println("2- Browse Sections in a course");
-            System.out.println("3- Register a Course");
-            System.out.println("4- See Registered Courses");
-            System.out.println("5-Delete A Registered Course");
+            System.out.println("2- Register a Course");
+            System.out.println("3- See Registered Courses");
+            System.out.println("4- Delete A Registered Course");
             System.out.println("Please enter the number of the service.");
             int choice = input.nextInt();
             
@@ -42,9 +41,8 @@ public class StudentView {
                     controller.BrowseCourses();
                     break;
                 case 2:
-                    
-                case 3:
                     //if we enter here , then the student want to register a course in a certain section.
+                    
                     System.out.println("please enter the course Code");
                     String register = input.next();
                     
@@ -53,15 +51,20 @@ public class StudentView {
                     
                     controller.registerCourse(register, Section);
                     break;
-                case 4:
+                case 3:
+                    //if we enter here , the students wants to see the registered courses.
                     controller.ViewRegisteredCourses();
                     break;
-                case 5:
+                    
+                case 4:
+                    //if we enter here, the student want to delete a registered course.
                     System.out.println("please enter the course Code");
                     String DELETE = input.next();
                     controller.deleteRegisteredCourse(DELETE);
 
                     //here he wants to delete a certain course he registered.
+                
+                    
                     
                 }
             }
