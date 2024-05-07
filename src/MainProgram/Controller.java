@@ -28,16 +28,15 @@ public class Controller {
         
         while(true){
             //this loop is here to keep requesting infor from the user until he enters correct info , then we break;
-            System.out.println("Enter id ");
+            System.out.println("Enter ID: ");
             int id = input.nextInt();
 
-            System.out.println("Enter Password");
+            System.out.println("Enter Password: ");
             String password = input.next();
             
             //now we need to check his id and password and to know who he is.
             LoggedStudent = authentication.AuthinticateStudent(id, password);
             
-            //after the authintication we will get the Student object who logged in.
             //but if its null, this means that the student doesn't exist.
             //and so don't break from the loop
             
@@ -48,7 +47,7 @@ public class Controller {
                 
         }
         
-        //when ever we reach this line , this means that the student has authinticated correctly , and we know 
+        //when ever we reach this line , this means that the student has authenticated correctly , and we know
         //which student object he is.
         Model = new Model(LoggedStudent);
         //now we must start the  View loop of the student.
@@ -63,9 +62,7 @@ public class Controller {
         // in this method , the controller has to communicate with the model
         //in order to show the student all the courses in the same major.
 
-        
         String Result = Model.BrowseCourses();
-        
         System.out.println(Result);
         
     }

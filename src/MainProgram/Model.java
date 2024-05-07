@@ -23,11 +23,7 @@ public class Model {
     
     public String BrowseCourses(){
         // in this method , the model must return the list of courses available
-        
 
-        
-        //do some logging such as recording something , before calling the true service.
-        
         Service proxy = new serviceProxy(LoggedStudent,new BrowseCourses());
         String Result = proxy.Operation();
         
