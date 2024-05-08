@@ -11,13 +11,18 @@ package MainProgram;
  */
 
 import BuilderClasses.*;
+import proxyClasses.Section;
+
 import java.util.Scanner;
 
 
 public class StudentView {
 
+
     public StudentView() {
     }
+
+
     
     public void view(Student LoggedStudent,Controller controller){
         //here will be the things that the student can see , HIS VIEW
@@ -42,13 +47,12 @@ public class StudentView {
                     break;
                 case 2:
                     //if we enter here , then the student want to register a course in a certain section.
-                    
                     System.out.println("please enter the course Code");
                     String register = input.next();
                     
                     System.out.println("please enter the Section name");
                     String Section = input.next();
-                    
+
                     controller.registerCourse(register, Section);
                     break;
                 case 3:
@@ -61,12 +65,13 @@ public class StudentView {
                     System.out.println("please enter the course Code");
                     String DELETE = input.next();
                     controller.deleteRegisteredCourse(DELETE);
-
                     //here he wants to delete a certain course he registered.
-                
-                    
-                    
                 }
             }
         }
-    }
+
+        public void printBasedonModel(String s) {
+        System.out.println(s);
+        }
+
+}

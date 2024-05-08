@@ -5,6 +5,9 @@
 package MainProgram;
 import BuilderClasses.*;
 import proxyClasses.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,8 +16,15 @@ import java.util.Scanner;
  */
 public class Model {
     Student LoggedStudent;
+    private List<Observer> observers = new ArrayList<>();
+    private void notifyObservers(String u) {
+        for (Observer observer : observers) {
+            observer.update(u);
+        }
+    }
 
-    public Model() {
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
     public Model(Student LoggedStudent) {
@@ -26,7 +36,7 @@ public class Model {
 
         Service proxy = new serviceProxy(LoggedStudent,new BrowseCourses());
         String Result = proxy.Operation();
-        
+        notifyObservers("BROWSE");
         return Result;
     }
     
@@ -37,6 +47,7 @@ public class Model {
             section = Section.findSection(course, SectionName);
         }
         Service proxy = new serviceProxy(LoggedStudent, section, course, new RegisterCourse());
+        notifyObservers("REGISTER");
         return proxy.Operation();
         
         
@@ -45,13 +56,15 @@ public class Model {
     
     public String ViewRegisteredCourses(){
         Service proxy = new serviceProxy(LoggedStudent,new ViewRegisteredCourses());
+        notifyObservers("VIEW");
         return proxy.Operation();
     }
     
     public String deleteRegisteredCourse(String CourseCode){
         Course course = Course.findCourse(CourseCode);
         Service proxy = new serviceProxy(LoggedStudent, course, new DeleteCourse());
+        notifyObservers("DELETE");
         return proxy.Operation();
-        
+
     }
 }

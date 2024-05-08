@@ -3,6 +3,8 @@ package MainProgram;
 
 import BuilderClasses.*;
 import proxyClasses.*;
+
+import javax.xml.transform.Result;
 import java.util.Scanner;
 
 /*
@@ -14,9 +16,10 @@ import java.util.Scanner;
  *
  * @author 96657
  */
-public class Controller {
+public class Controller implements Observer{
     Student LoggedStudent;
-    Model Model;
+    private Model Model;
+    private StudentView view;
     public void Start(){
         //this method represent the connection with the model, and everything else.
         
@@ -51,19 +54,18 @@ public class Controller {
         //which student object he is.
         Model = new Model(LoggedStudent);
         //now we must start the  View loop of the student.
-        
-        StudentView view = new StudentView();
+        this.Model.addObserver(this);
+
+        view = new StudentView();
         view.view(LoggedStudent,this);
-        //call the view method which will handle what the user sees (main menu) 
-        
+        //call the view method which will handle what the user sees (main menu)
     }
     
     public void BrowseCourses(){
         // in this method , the controller has to communicate with the model
         //in order to show the student all the courses in the same major.
-
         String Result = Model.BrowseCourses();
-        System.out.println(Result);
+        view.printBasedonModel(Result);
         
     }
     
@@ -71,21 +73,30 @@ public class Controller {
         //here we will register the student to a certain course
         //given its Codename, and the section within the course.
         String Result = Model.registerCourse(CourseCode, SectionName);
-       
-        System.out.println(Result);
+        view.printBasedonModel(Result);
     }
     
     public void ViewRegisteredCourses(){
         
         String Result = Model.ViewRegisteredCourses();
-        
-        System.out.println(Result);
+        view.printBasedonModel(Result);
+
     }
     
     public void deleteRegisteredCourse(String CourseCode){
         
         String Result = Model.deleteRegisteredCourse(CourseCode);
-        System.out.println(Result);
-        
+        view.printBasedonModel(Result);
+
+    }
+
+
+    @Override
+    public void update(String updateType) {
+        System.out.println("Required operation in progress..");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {e.getStackTrace();
+        }
     }
 }

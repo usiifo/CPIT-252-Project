@@ -52,7 +52,6 @@ public class Main {
         course4.addSection(section6);
         System.out.println(course);
 
-        Student student = studentDirector.getStudent();
 
         
 
