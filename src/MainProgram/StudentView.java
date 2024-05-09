@@ -5,10 +5,6 @@ package MainProgram;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author 96657
- */
 
 import BuilderClasses.*;
 import proxyClasses.Section;
